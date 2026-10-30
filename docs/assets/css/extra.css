@@ -1,0 +1,787 @@
+/* ==========================================================================
+   Fiononana Rasamimanana : geospatial portfolio
+   Identité : "feuille de carte" (papier chaud, encre vert-bleu, orange de
+   repère topographique), courbes de niveau, graticule, coordonnées en mono.
+
+   Sommaire
+   1. Variables (clair / sombre)
+   2. Typographie
+   3. En-tête, onglets, pied de page
+   4. Boutons, tags, éléments communs
+   5. Accueil : hero, chiffres, à propos, carte, compétences, appel final
+   6. Pages projets (galerie + articles)
+   7. Expérience, publications, contact
+   8. Animations & accessibilité
+   ========================================================================== */
+
+
+/* ---------- 1. Variables ------------------------------------------------- */
+
+:root {
+  --font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-hand: "Caveat", "Bradley Hand", "Segoe Script", cursive;
+
+  --md-text-font: "Instrument Sans";
+  --md-code-font: "JetBrains Mono";
+
+  --radius: 6px;
+}
+
+[data-md-color-scheme="default"] {
+  --paper: #f6f2e7;
+  --card: #fbf9f2;
+  --card-2: #eee8d6;
+  --ink: #10302f;
+  --teal: #1e6f6a;
+  --accent: #d9481f;
+  --accent-ink: #ffffff;
+  --water: #cfe0da;
+  --line: rgba(16, 48, 47, 0.16);
+  --line-strong: rgba(16, 48, 47, 0.55);
+  --contour: rgba(30, 111, 106, 0.30);
+  --graticule: rgba(16, 48, 47, 0.055);
+  --shadow: 0 1px 0 rgba(16, 48, 47, 0.06), 0 10px 28px -14px rgba(16, 48, 47, 0.35);
+
+  --md-default-bg-color: var(--paper);
+  --md-default-fg-color: var(--ink);
+  --md-default-fg-color--light: rgba(16, 48, 47, 0.72);
+  --md-default-fg-color--lighter: rgba(16, 48, 47, 0.38);
+  --md-default-fg-color--lightest: rgba(16, 48, 47, 0.12);
+  --md-typeset-color: #1c3b39;
+  --md-typeset-a-color: var(--teal);
+
+  --md-primary-fg-color: #10302f;
+  --md-primary-fg-color--light: #1e6f6a;
+  --md-primary-fg-color--dark: #0a2120;
+  --md-primary-bg-color: #f6f2e7;
+  --md-primary-bg-color--light: rgba(246, 242, 231, 0.72);
+  --md-accent-fg-color: var(--accent);
+  --md-accent-fg-color--transparent: rgba(217, 72, 31, 0.1);
+
+  --md-code-bg-color: #ece6d5;
+  --md-code-fg-color: #10302f;
+  --md-footer-bg-color: #0a2120;
+  --md-footer-bg-color--dark: #07191a;
+}
+
+[data-md-color-scheme="slate"] {
+  --paper: #0d1e20;
+  --card: #122a2c;
+  --card-2: #173337;
+  --ink: #e9e4d3;
+  --teal: #6cc3b5;
+  --accent: #ff8057;
+  --accent-ink: #1a0c07;
+  --water: #0b1a1c;
+  --line: rgba(233, 228, 211, 0.15);
+  --line-strong: rgba(233, 228, 211, 0.5);
+  --contour: rgba(108, 195, 181, 0.24);
+  --graticule: rgba(233, 228, 211, 0.045);
+  --shadow: 0 1px 0 rgba(0, 0, 0, 0.3), 0 12px 30px -14px rgba(0, 0, 0, 0.7);
+
+  --md-default-bg-color: var(--paper);
+  --md-default-fg-color: var(--ink);
+  --md-default-fg-color--light: rgba(233, 228, 211, 0.74);
+  --md-default-fg-color--lighter: rgba(233, 228, 211, 0.4);
+  --md-default-fg-color--lightest: rgba(233, 228, 211, 0.12);
+  --md-typeset-color: #d9d5c5;
+  --md-typeset-a-color: var(--teal);
+
+  --md-primary-fg-color: #0a1819;
+  --md-primary-fg-color--light: #6cc3b5;
+  --md-primary-fg-color--dark: #07100f;
+  --md-primary-bg-color: #e9e4d3;
+  --md-primary-bg-color--light: rgba(233, 228, 211, 0.7);
+  --md-accent-fg-color: var(--accent);
+  --md-accent-fg-color--transparent: rgba(255, 128, 87, 0.12);
+
+  --md-code-bg-color: #0a1819;
+  --md-code-fg-color: #e9e4d3;
+  --md-footer-bg-color: #07100f;
+  --md-footer-bg-color--dark: #050b0b;
+}
+
+.md-grid { max-width: 71rem; }
+
+/* texte courant plus aéré, ancres de section lisibles sous l'en-tête */
+.md-typeset { font-size: 0.82rem; line-height: 1.7; }
+html { scroll-padding-top: 5rem; }
+
+
+/* ---------- 2. Typographie ------------------------------------------------ */
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.012em;
+  color: var(--md-default-fg-color);
+}
+
+.md-typeset h1 { font-size: 2.1rem; line-height: 1.12; margin: 0 0 0.9em; }
+.md-typeset h2 { font-size: 1.55rem; line-height: 1.2; margin: 2.2em 0 0.6em; }
+.md-typeset h3 { font-size: 1.15rem; margin: 1.8em 0 0.5em; }
+
+.mono, .coords { font-family: var(--font-mono); font-feature-settings: "zero"; }
+.coords { letter-spacing: 0.02em; }
+
+.md-typeset a { text-underline-offset: 3px; }
+.md-typeset hr { border-bottom: 1px solid var(--line); margin: 2rem 0; }
+
+.md-typeset blockquote,
+.md-typeset .admonition {
+  border-radius: var(--radius);
+}
+
+.md-typeset table:not([class]) {
+  font-size: 0.78rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: none;
+  overflow: hidden;
+}
+.md-typeset table:not([class]) th {
+  background: var(--card-2);
+  color: var(--md-default-fg-color);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+
+/* ---------- 3. En-tête, onglets, pied de page ---------------------------- */
+
+.md-header {
+  box-shadow: none;
+  border-bottom: 1px solid rgba(246, 242, 231, 0.12);
+}
+.md-header__title { font-family: var(--font-display); font-weight: 500; letter-spacing: 0; }
+.md-header__button.md-logo img { height: 1.7rem; width: auto; }
+.md-tabs { border-bottom: 1px solid rgba(246, 242, 231, 0.08); }
+.md-tabs__link {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+.md-tabs__item--active .md-tabs__link,
+.md-tabs__link:hover { opacity: 1; }
+.md-tabs__item--active .md-tabs__link {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+
+/* pied de page : courbes de niveau en filigrane */
+.md-footer { position: relative; isolation: isolate; overflow: hidden; }
+.md-footer::before {
+  content: "";
+  position: absolute;
+  inset: -10% -5%;
+  z-index: -1;
+  background: rgba(108, 195, 181, 0.16);
+  -webkit-mask: url("../images/contours.svg") center / cover no-repeat;
+  mask: url("../images/contours.svg") center / cover no-repeat;
+}
+.md-footer-meta { background: transparent; }
+.md-copyright { font-size: 0.7rem; width: auto; }
+.md-copyright .coords { opacity: 0.8; }
+
+
+/* ---------- 4. Boutons, tags, éléments communs --------------------------- */
+
+.md-typeset .md-button,
+.btn {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.78rem;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--ink);
+  color: var(--ink);
+  background: transparent;
+  padding: 0.55em 1.2em;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+.md-typeset .md-button:hover,
+.btn:hover {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+  transform: translateY(-1px);
+}
+.md-typeset .md-button--primary,
+.btn--primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+.md-typeset .md-button--primary:hover,
+.btn--primary:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+.btn { display: inline-flex; align-items: center; gap: 0.5em; text-decoration: none !important; cursor: pointer; }
+.btn svg { width: 1.05em; height: 1.05em; fill: currentColor; }
+
+.md-typeset ul.tags { display: flex; flex-wrap: wrap; gap: 0.35rem; list-style: none !important; margin: 0.9rem 0 0 !important; padding: 0 !important; }
+.md-typeset ul.tags li {
+  margin: 0 !important;
+  padding: 0.18em 0.6em;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.02em;
+  color: var(--teal);
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  background: var(--card);
+}
+
+/* petit repère mono « 01 — About » */
+.sec-head { display: flex; align-items: baseline; gap: 0.9rem; margin: 3.4rem 0 1.2rem; }
+.sec-head .sec-no {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+.md-typeset .sec-head h2 { margin: 0; font-size: 1.8rem; }
+.sec-head::after { content: ""; flex: 1; height: 1px; background: var(--line); align-self: center; }
+
+/* lightbox (clic sur une figure) */
+.lightbox {
+  position: fixed; inset: 0; z-index: 1000;
+  display: grid; place-items: center;
+  padding: 2rem;
+  background: rgba(7, 16, 15, 0.88);
+  cursor: zoom-out;
+  animation: fade-in 0.2s ease;
+}
+.lightbox img { max-width: min(96vw, 1500px); max-height: 90vh; border-radius: var(--radius); background: #fff; }
+.md-typeset article img, .md-content__inner > p > img { cursor: zoom-in; }
+.md-content__inner a img, .hero img, .proj img, .about-fig img { cursor: auto; }
+
+
+/* ---------- 5. Accueil ---------------------------------------------------- */
+
+/* --- 5.1 Hero = feuille de carte --- */
+.md-typeset .hero,
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin: 0.4rem 0 1.4rem;
+  padding: clamp(1.6rem, 4.5vw, 3.6rem) clamp(1.4rem, 4.5vw, 3.8rem) clamp(2.6rem, 4vw, 3.4rem);
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--radius);
+  background-color: var(--card);
+  background-image:
+    linear-gradient(var(--graticule) 1px, transparent 1px),
+    linear-gradient(90deg, var(--graticule) 1px, transparent 1px);
+  background-size: 72px 72px;
+  box-shadow: var(--shadow);
+}
+.hero::before {                       /* courbes de niveau qui dérivent lentement */
+  content: "";
+  position: absolute;
+  inset: -6%;
+  z-index: -2;
+  background: var(--contour);
+  -webkit-mask: url("../images/contours.svg") center / cover no-repeat;
+  mask: url("../images/contours.svg") center / cover no-repeat;
+  animation: drift 70s ease-in-out infinite alternate;
+}
+.hero::after {                        /* voile pour garder le texte lisible à gauche */
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, var(--card) 0%, color-mix(in srgb, var(--card) 88%, transparent) 34%, transparent 72%);
+}
+
+.hero__ticks { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.hero__ticks::before, .hero__ticks::after { content: ""; position: absolute; opacity: 0.5; }
+.hero__ticks::before {
+  top: 0; left: 0; right: 0; height: 9px;
+  background: repeating-linear-gradient(90deg, var(--ink) 0 1px, transparent 1px 36px);
+  -webkit-mask: linear-gradient(#000 0 0) top / 100% 5px no-repeat;
+  mask: linear-gradient(#000 0 0) top / 100% 5px no-repeat;
+}
+.hero__ticks::after {
+  top: 0; bottom: 0; left: 0; width: 9px;
+  background: repeating-linear-gradient(180deg, var(--ink) 0 1px, transparent 1px 36px);
+  -webkit-mask: linear-gradient(#000 0 0) left / 5px 100% no-repeat;
+  mask: linear-gradient(#000 0 0) left / 5px 100% no-repeat;
+}
+.hero__corner {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: var(--md-default-fg-color--light);
+  z-index: 1;
+}
+.hero__corner--tl { top: 0.75rem; left: 1.3rem; }
+.hero__corner--tr { top: 0.75rem; right: 1.3rem; }
+.hero__corner--bl { bottom: 0.7rem; left: 1.3rem; }
+
+.hero__scale {
+  position: absolute; right: 1.3rem; bottom: 0.7rem;
+  display: flex; align-items: center; gap: 0.5rem;
+  font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.08em;
+  color: var(--md-default-fg-color--light);
+}
+.hero__scale i {
+  display: block; width: 84px; height: 6px;
+  border: 1px solid var(--ink); border-top: 0;
+  background: linear-gradient(90deg, var(--ink) 0 50%, transparent 50%) 0 0 / 42px 100%;
+  opacity: 0.8;
+}
+
+.hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero__eyebrow {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  margin: 0 0 1.1rem;
+  font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--teal);
+}
+.hero__eyebrow::before {
+  content: ""; width: 9px; height: 9px; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 var(--accent);
+  animation: ping 2.4s ease-out infinite;
+}
+
+.md-typeset .hero h1 {
+  margin: 0 0 1.1rem;
+  font-size: clamp(2rem, 8.4vw, 4.5rem);
+  line-height: 0.98;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  font-variation-settings: "opsz" 144;
+  color: var(--md-default-fg-color);
+}
+.hero h1 em {
+  display: block;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--teal);
+  margin-left: 0.04em;
+}
+
+.md-typeset ul.hero__roles { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0 0 1.1rem; padding: 0; list-style: none; }
+.md-typeset ul.hero__roles li {
+  margin: 0; padding: 0.3em 0.8em; list-style: none;
+  font-size: 0.74rem; font-weight: 600;
+  border: 1.5px solid var(--ink); border-radius: 99px;
+  background: color-mix(in srgb, var(--card) 80%, transparent);
+}
+.hero .lede {
+  max-width: 34rem; margin: 0 0 0.35rem;
+  font-family: var(--font-display); font-style: italic;
+  font-size: 1.28rem; line-height: 1.35; color: var(--md-default-fg-color);
+}
+.hero .stack {
+  margin: 0 0 1.6rem;
+  font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.04em;
+  color: var(--md-default-fg-color--light);
+}
+.hero__cta { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+
+/* photo = tirage posé sur la carte */
+.md-typeset figure.hero__photo { margin: 0; position: relative; justify-self: center; width: min(100%, 300px); transform: rotate(2deg); transition: transform 0.4s ease; }
+.hero__photo:hover { transform: rotate(0deg); }
+.hero__photo .frame {
+  position: relative; padding: 9px 9px 0;
+  background: var(--card);
+  border: 1.5px solid var(--line-strong);
+  box-shadow: var(--shadow);
+}
+.hero__photo img {
+  display: block; width: 100%; aspect-ratio: 4 / 4.6; object-fit: cover; object-position: 55% 18%;
+  border-radius: 0;
+}
+.hero__photo figcaption {
+  display: flex; justify-content: space-between; gap: 0.6rem;
+  padding: 0.55rem 0.2rem 0.6rem;
+  font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.06em; color: var(--md-default-fg-color--light);
+}
+.hero__pin {
+  position: absolute; top: -9px; right: 24px; z-index: 3;
+  width: 17px; height: 17px; border-radius: 50%;
+  background: var(--accent); border: 3px solid var(--card);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+}
+.hero__note {
+  position: absolute; left: -4.6rem; top: -1.7rem; z-index: 4;
+  display: flex; align-items: flex-end; gap: 0.2rem;
+  font-family: var(--font-hand); font-size: 1.4rem; line-height: 1; color: var(--accent);
+  transform: rotate(-6deg); white-space: nowrap;
+}
+.hero__note svg { width: 30px; height: 26px; fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; margin-bottom: -10px; }
+
+/* --- 5.2 Bandeau de chiffres (légende) --- */
+.facts {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0; margin: 0 0 1rem;
+  border-top: 1.5px solid var(--ink); border-bottom: 1px solid var(--line);
+}
+.fact { padding: 1.1rem 1.2rem 1.15rem 0; }
+.fact + .fact { padding-left: 1.2rem; border-left: 1px solid var(--line); }
+.fact__num {
+  display: block;
+  font-family: var(--font-display); font-weight: 500;
+  font-size: clamp(1.7rem, 3.6vw, 2.8rem); line-height: 1; letter-spacing: -0.03em; white-space: nowrap;
+  color: var(--md-default-fg-color);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.fact__num small { font-size: 0.5em; color: var(--accent); margin-left: 0.08em; font-weight: 500; }
+.fact__label { display: block; margin-top: 0.45rem; font-size: 0.74rem; line-height: 1.4; color: var(--md-default-fg-color--light); }
+
+/* --- 5.3 À propos --- */
+.about-section { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr); gap: clamp(1.5rem, 4vw, 3rem); align-items: start; }
+.about-text > p:first-child { font-size: 1rem; line-height: 1.6; color: var(--md-default-fg-color); }
+.about-text > p:first-child::first-letter {
+  float: left; margin: 0.08em 0.1em 0 0;
+  font-family: var(--font-display); font-size: 3.5em; line-height: 0.82; font-weight: 500; color: var(--accent);
+}
+.about-text li { margin-bottom: 0.5em; }
+.md-typeset figure.about-fig { margin: 0; width: 100%; align-items: stretch; position: sticky; top: 5.5rem; }
+.about-fig img { display: block; width: 100%; border-radius: 3px; border: 1.5px solid var(--line-strong); box-shadow: var(--shadow); }
+.about-fig figcaption {
+  margin-top: 0.7rem;
+  font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.06em; color: var(--md-default-fg-color--light);
+}
+.about-fig figcaption b { color: var(--accent); font-weight: 500; }
+
+/* --- 5.4 Carte des terrains --- */
+.fieldwork { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 1.25rem; position: relative; }
+.fieldwork__note {
+  position: absolute; z-index: 5; top: -2.3rem; right: 330px;
+  font-family: var(--font-hand); font-size: 1.3rem; color: var(--accent); transform: rotate(-3deg);
+  display: flex; align-items: center; gap: 0.35rem; pointer-events: none;
+}
+.fieldwork__note svg { width: 38px; height: 26px; fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-linecap: round; transform: translateY(8px); }
+
+.mapframe { position: relative; border: 1.5px solid var(--line-strong); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); background: var(--water); }
+#field-map { height: 520px; width: 100%; z-index: 1; font-family: var(--font-body); }
+[data-md-color-scheme="default"] #field-map .leaflet-tile-pane { filter: sepia(0.32) saturate(0.82) hue-rotate(-6deg) brightness(1.01); }
+[data-md-color-scheme="slate"] #field-map .leaflet-tile-pane { filter: saturate(0.85) hue-rotate(12deg); }
+#field-map .leaflet-control-attribution { font-size: 0.6rem; background: color-mix(in srgb, var(--paper) 82%, transparent); color: var(--md-default-fg-color--light); }
+#field-map .leaflet-control-attribution a { color: var(--teal); }
+#field-map .leaflet-bar { border: 1.5px solid var(--line-strong); box-shadow: none; border-radius: var(--radius); overflow: hidden; }
+#field-map .leaflet-bar a { background: var(--card); color: var(--ink); border-bottom-color: var(--line); }
+#field-map .leaflet-bar a:hover { background: var(--card-2); }
+.mapframe__hint {
+  position: absolute; left: 0.7rem; bottom: 0.7rem; z-index: 800; pointer-events: none;
+  padding: 0.25em 0.7em; border-radius: 99px;
+  font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.06em;
+  background: color-mix(in srgb, var(--paper) 88%, transparent); color: var(--md-default-fg-color--light);
+  border: 1px solid var(--line);
+  transition: opacity 0.3s ease;
+}
+.mapframe.is-active .mapframe__hint { opacity: 0; }
+
+/* pins numérotés */
+.pin { background: none; border: 0; }
+.pin span {
+  display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%;
+  background: var(--accent); color: var(--accent-ink);
+  border: 3px solid var(--card);
+  box-shadow: 0 0 0 1.5px var(--ink), 0 3px 8px rgba(0, 0, 0, 0.35);
+  font-family: var(--font-mono); font-size: 0.66rem; font-weight: 500;
+  transition: transform 0.18s ease;
+}
+.pin:hover span, .pin.is-on span { transform: scale(1.18); }
+.pin--home span { background: var(--ink); color: var(--paper); }
+.pin--home span::after {
+  content: ""; position: absolute; inset: -3px; border-radius: 50%;
+  border: 2px solid var(--ink); opacity: 0;
+  animation: ring 2.6s ease-out infinite;
+}
+.route { stroke-dasharray: 3 8; stroke-linecap: round; animation: march 1.8s linear infinite; }
+
+.leaflet-popup-content-wrapper {
+  background: var(--card); color: var(--md-typeset-color);
+  border: 1.5px solid var(--ink); border-radius: var(--radius); box-shadow: var(--shadow);
+}
+.leaflet-popup-tip { background: var(--card); border: 1.5px solid var(--ink); box-shadow: none; }
+.leaflet-popup-content { margin: 0.8rem 1rem; font-size: 0.78rem; line-height: 1.5; }
+.leaflet-container a.leaflet-popup-close-button { color: var(--md-default-fg-color--light); }
+.pop__when { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.pop__name { margin: 0.1rem 0 0.35rem; font-family: var(--font-display); font-size: 1.1rem; font-weight: 500; color: var(--md-default-fg-color); }
+.pop__text { margin: 0; }
+.pop__link { display: inline-block; margin-top: 0.5rem; font-weight: 600; color: var(--teal) !important; }
+
+/* liste des sites à droite de la carte */
+.md-typeset ol.sites { list-style: none; margin: 0; padding: 0; counter-reset: site; display: flex; flex-direction: column; border-top: 1.5px solid var(--ink); }
+.md-typeset ol.sites li { margin: 0; border-bottom: 1px solid var(--line); counter-increment: site; }
+.sites button {
+  all: unset; box-sizing: border-box; width: 100%; cursor: pointer;
+  display: grid; grid-template-columns: 1.9rem 1fr; gap: 0.2rem 0.5rem;
+  padding: 0.85rem 0.4rem 0.85rem 0.2rem;
+  transition: background 0.15s ease, padding 0.15s ease;
+}
+.sites button::before {
+  content: counter(site); grid-row: span 2;
+  display: grid; place-items: center; width: 1.5rem; height: 1.5rem; margin-top: 0.1rem; border-radius: 50%;
+  font-family: var(--font-mono); font-size: 0.64rem; color: var(--accent); border: 1.5px solid var(--accent);
+}
+.sites li.is-home button::before { color: var(--paper); background: var(--ink); border-color: var(--ink); }
+.sites button:hover, .sites button:focus-visible, .sites li.is-on button { background: var(--card-2); padding-left: 0.55rem; }
+.sites button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.sites strong { font-family: var(--font-display); font-weight: 500; font-size: 1rem; color: var(--md-default-fg-color); line-height: 1.2; }
+.sites small { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.04em; color: var(--md-default-fg-color--light); grid-column: 2; }
+
+/* --- 5.5 Compétences --- */
+.md-typeset .grid.cards > ul:not([hidden]) { gap: 0.9rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 1100px) { .md-typeset .grid.cards > ul:not([hidden]) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .md-typeset .grid.cards > ul:not([hidden]) { grid-template-columns: 1fr; } }
+.md-typeset .grid.cards > ul > li {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 2.5px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: none;
+  padding: 0.9rem 1.1rem 0.7rem;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-top-color 0.18s ease;
+}
+.md-typeset .grid.cards > ul > li:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+  border-color: var(--line);
+  border-top-color: var(--accent);
+}
+.md-typeset .grid.cards > ul > li > p:first-child { font-family: var(--font-display); font-size: 1.05rem; font-weight: 500; margin-top: 0; }
+.md-typeset .grid.cards .twemoji { color: var(--teal); }
+.md-typeset .grid.cards hr { border-color: var(--line); margin: 0.6rem 0; }
+.md-typeset .grid.cards ul li { font-size: 0.77rem; }
+
+/* --- 5.6 Appel final --- */
+.cta {
+  position: relative; isolation: isolate; overflow: hidden;
+  margin: 3.5rem 0 1rem; padding: clamp(2rem, 5vw, 3.6rem);
+  border-radius: var(--radius);
+  background: var(--md-primary-fg-color); color: #f6f2e7;
+  text-align: left;
+}
+.cta::before {
+  content: ""; position: absolute; inset: -8%; z-index: -1;
+  background: rgba(108, 195, 181, 0.28);
+  -webkit-mask: url("../images/contours.svg") 30% 70% / cover no-repeat;
+  mask: url("../images/contours.svg") 30% 70% / cover no-repeat;
+}
+.md-typeset .cta h2 { margin: 0 0 0.5rem; font-size: clamp(1.7rem, 3.4vw, 2.4rem); color: #f6f2e7; }
+.cta p { margin: 0 0 1.4rem; max-width: 36rem; color: rgba(246, 242, 231, 0.8); font-size: 0.9rem; }
+.cta .btn { color: #f6f2e7; border-color: #f6f2e7; }
+.cta .btn:hover { background: #f6f2e7; color: #10302f; }
+.cta .btn--primary { color: #fff; border-color: var(--accent); box-shadow: 3px 3px 0 #f6f2e7; }
+.cta .btn--primary:hover { color: #fff; background: var(--accent); box-shadow: 5px 5px 0 #f6f2e7; }
+.cta__row { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+
+
+/* ---------- 6. Pages projets ---------------------------------------------- */
+
+.proj-intro { max-width: 40rem; font-size: 0.95rem; color: var(--md-default-fg-color--light); margin-bottom: 2rem; }
+
+.proj-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.4rem; margin: 0 0 2rem; }
+.proj {
+  position: relative; display: flex; flex-direction: column; overflow: hidden;
+  background: var(--card);
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--radius);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+.proj:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--accent); }
+.proj--feature { grid-column: 1 / -1; flex-direction: row; }
+.proj--feature .proj__media { flex: 0 0 46%; aspect-ratio: auto; min-height: 320px; }
+.proj__media { position: relative; overflow: hidden; aspect-ratio: 16 / 9; background: var(--water); border-bottom: 1.5px solid var(--line-strong); }
+.proj--feature .proj__media { border-bottom: 0; border-right: 1.5px solid var(--line-strong); }
+.md-typeset .proj__media img {
+  position: absolute; inset: 0; width: 100%; height: 100%; margin: 0;
+  object-fit: cover; object-position: center top; border-radius: 0;
+  transition: transform 0.6s ease;
+}
+.proj:hover .proj__media img { transform: scale(1.045); }
+.proj__media::after {              /* courbes de niveau par-dessus la vignette */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: rgba(246, 242, 231, 0.35); mix-blend-mode: overlay;
+  -webkit-mask: url("../images/contours.svg") center / cover no-repeat;
+  mask: url("../images/contours.svg") center / cover no-repeat;
+}
+.proj__no {
+  position: absolute; top: 0.8rem; left: 0.8rem; z-index: 2;
+  padding: 0.2em 0.65em; border-radius: 99px;
+  font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.08em;
+  background: var(--paper); color: var(--md-default-fg-color); border: 1.5px solid var(--ink);
+}
+.proj__body { display: flex; flex-direction: column; flex: 1; padding: 1.2rem 1.4rem 1.3rem; }
+.proj__meta {
+  display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; margin: 0 0 0.6rem;
+  font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--accent);
+}
+.proj__meta span + span { color: var(--md-default-fg-color--light); }
+.md-typeset .proj h2 { margin: 0 0 0.6rem; font-size: 1.28rem; line-height: 1.22; }
+.proj--feature h2 { font-size: 1.6rem; }
+.proj h2 a { color: var(--md-default-fg-color); text-decoration: none; }
+.proj h2 a::after { content: ""; position: absolute; inset: 0; z-index: 3; }   /* carte entièrement cliquable */
+.proj p { margin: 0; font-size: 0.8rem; color: var(--md-typeset-color); }
+.proj__cta {
+  margin-top: auto; padding-top: 1.1rem;
+  font-weight: 600; font-size: 0.78rem; color: var(--teal);
+}
+.proj__cta span { display: inline-block; transition: transform 0.2s ease; }
+.proj:hover .proj__cta span { transform: translateX(5px); }
+
+/* articles de projet : titres, figures, légendes */
+.md-content__inner > h1:first-child { font-size: clamp(1.7rem, 3.2vw, 2.4rem); line-height: 1.15; max-width: 48rem; }
+.md-typeset article p > img,
+.md-content__inner > p > img {
+  display: block; width: 100%;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: #fff; margin-bottom: 0.4rem;
+}
+.md-content__inner > p > img + em,
+.md-content__inner > p > img + br + em {
+  display: block;
+  font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.02em; line-height: 1.5;
+  color: var(--md-default-fg-color--light);
+  padding-left: 0.7rem; border-left: 2px solid var(--accent); margin: 0.2rem 0 1.4rem;
+}
+.md-content__inner > h2 { padding-top: 0.4em; border-top: 1px solid var(--line); }
+.md-content__inner > h2:first-of-type { border-top: 0; }
+
+
+/* ---------- 7. Expérience, publications, contact --------------------------- */
+
+/* tracé de route : trait + repères */
+.timeline { position: relative; padding-left: 2rem; border-left: 0; margin: 1.5rem 0 2.4rem; }
+.timeline::before {
+  content: ""; position: absolute; left: 6px; top: 0.6rem; bottom: 0.6rem; width: 0;
+  border-left: 2px dashed var(--line-strong);
+}
+.timeline-entry {
+  position: relative; margin-bottom: 1.4rem; padding: 1.1rem 1.4rem 0.5rem;
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.timeline-entry:hover { border-color: var(--teal); box-shadow: var(--shadow); }
+.timeline-entry::before {
+  content: ""; position: absolute; left: -2rem; top: 1.45rem;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--accent); border: 3px solid var(--paper);
+  box-shadow: 0 0 0 1.5px var(--ink);
+}
+.timeline-entry h3 { margin: 0 0 0.35rem; font-size: 1.05rem; line-height: 1.3; }
+.timeline-entry h3 + p { margin-top: 0; }
+.timeline-entry h3 + p em, .timeline-entry h3 + p > em:only-child {
+  font-style: normal; font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--accent);
+}
+.timeline--edu .timeline-entry::before { background: var(--paper); }
+.timeline-entry p strong { font-weight: 600; }
+
+/* publications */
+.md-typeset ol li::marker { font-family: var(--font-mono); color: var(--accent); }
+
+/* contact */
+.contact-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1.6rem 0 2rem; }
+.contact-card {
+  position: relative; padding: 1.1rem 1.3rem 1rem; border-radius: var(--radius);
+  background: var(--card); border: 1.5px solid var(--line-strong);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.contact-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--accent); }
+.contact-card .twemoji { display: block; margin-bottom: 0.5rem; color: var(--teal); }
+.contact-card .twemoji svg { width: 1.7rem; height: 1.7rem; }
+.contact-card small {
+  display: block; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent);
+}
+.contact-card p { margin: 0; }
+.contact-card a.card-link { font-family: var(--font-display); font-size: 1.05rem; font-weight: 500; text-decoration: none; word-break: break-word; }
+.contact-card a.card-link::after { content: ""; position: absolute; inset: 0; }
+
+
+/* ---------- 8. Animations & accessibilité ---------------------------------- */
+
+@keyframes drift { from { transform: translate3d(-1.5%, -1%, 0) scale(1.02); } to { transform: translate3d(1.5%, 1%, 0) scale(1.06); } }
+@keyframes ping { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent); } 80%, 100% { box-shadow: 0 0 0 10px transparent; } }
+@keyframes ring { 0% { transform: scale(0.9); opacity: 0.7; } 100% { transform: scale(2.1); opacity: 0; } }
+@keyframes march { to { stroke-dashoffset: -22; } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.js .reveal.is-in { opacity: 1; transform: none; }
+
+.hero__inner > * { animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.hero__inner > *:nth-child(2) { animation-delay: 0.15s; }
+
+@media (max-width: 960px) {
+  .hero__inner { grid-template-columns: minmax(0, 1fr); }
+  .md-typeset figure.hero__photo { width: min(72%, 260px); justify-self: start; margin-top: 0.4rem; }
+  .hero__note { display: none; }
+  .hero::after { background: linear-gradient(180deg, var(--card) 0%, color-mix(in srgb, var(--card) 80%, transparent) 55%, transparent 100%); }
+  .about-section { grid-template-columns: 1fr; }
+  .md-typeset figure.about-fig { position: static; max-width: 460px; }
+  .fieldwork { grid-template-columns: 1fr; }
+  .fieldwork__note { display: none; }
+  #field-map { height: 420px; }
+  .proj--feature { flex-direction: column; }
+  .proj--feature .proj__media { flex: none; min-height: 0; aspect-ratio: 16 / 9; border-right: 0; border-bottom: 1.5px solid var(--line-strong); }
+}
+@media (max-width: 720px) {
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fact:nth-child(3) { padding-left: 0; border-left: 0; }
+  .fact:nth-child(n + 3) { border-top: 1px solid var(--line); }
+  .proj-grid, .contact-grid { grid-template-columns: 1fr; }
+  .hero__scale { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .js .reveal { opacity: 1; transform: none; }
+}
+
+/* bouton « reset view » de la carte */
+.mapframe__reset {
+  position: absolute; right: 0.7rem; top: 0.7rem; z-index: 800; cursor: pointer;
+  padding: 0.3em 0.8em; border-radius: 99px;
+  font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.06em;
+  background: var(--card); color: var(--md-default-fg-color); border: 1.5px solid var(--ink);
+}
+.mapframe__reset:hover { background: var(--ink); color: var(--paper); }
+
+/* boutons : couleur de texte plus spécifique que `.md-typeset a` */
+.md-typeset a.btn { color: var(--ink); }
+.md-typeset a.btn:hover { color: var(--paper); }
+.md-typeset a.btn--primary,
+.md-typeset a.btn--primary:hover { color: var(--accent-ink); }
+.md-typeset .cta a.btn { color: #f6f2e7; }
+.md-typeset .cta a.btn:hover { color: #10302f; }
+.md-typeset .cta a.btn--primary,
+.md-typeset .cta a.btn--primary:hover { color: #fff; }
+
+/* un peu d'air avant le pied de page */
+.md-content__inner { margin-bottom: 2.4rem; }
