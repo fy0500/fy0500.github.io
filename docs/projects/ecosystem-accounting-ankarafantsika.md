@@ -27,9 +27,6 @@ I applied the Ecosystem Natural Capital Accounting (CECN) quick-start package of
 - CHIRPS annual rainfall, WorldClim 30-year normals and WaPOR v3 evapotranspiration (300 m)
 - INSTAT household data (2018), building counts from high-resolution imagery as a household proxy for 2023, OpenStreetMap roads, Global Dam Watch dams, and park tourism statistics
 
-![Locations of GPS points collected in August 2024 by land cover type, with the track followed on the ground](../assets/images/gps-points.png)
-*Field GPS points used to delineate training parcels (August 2024).*
-
 ![Methodological workflow: input data, Google Earth Engine pre-processing, land cover mapping, ecosystem accounts and outputs](../assets/images/cecn-workflow.png)
 *Methodological workflow, from Sentinel-2 images and ancillary data to the three accounts.*
 
@@ -128,6 +125,6 @@ I applied the Ecosystem Natural Capital Accounting (CECN) quick-start package of
 
 ## Links
 
-[View Methodology (Weber, 2014)](https://www.wavespartnership.org/en/node/374){ .md-button }
+[View Methodology (Weber, 2014)](https://www.cbd.int/doc/publications/cbd-ts-77-fr.pdf){ .md-button }
 [View Rainfall Data (CHIRPS)](https://www.chc.ucsb.edu/data/chirps){ .md-button }
 [View Hydrography Data (HydroSHEDS)](https://www.hydrosheds.org){ .md-button }
