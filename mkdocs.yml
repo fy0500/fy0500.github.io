@@ -82,6 +82,7 @@ nav:
   - Projects:
     - "All Projects": projects/index.md
     - "Garden Detection & Road Traffic": projects/sample-project.md
+    - "Water Stress in Madagascar (QGIS)": projects/water-stress-madagascar.md
     - "Ecosystem Accounting, Ankarafantsika": projects/ecosystem-accounting-ankarafantsika.md
     - "Car Jaune Bus Tracking (PostGIS)": projects/PostGIS_en.ipynb
     # HOW TO ADD A NEW PROJECT:

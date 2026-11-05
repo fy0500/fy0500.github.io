@@ -33,7 +33,18 @@ hide:
 </article>
 
 <article class="proj">
-<div class="proj__media"><img src="../assets/images/thumb-ankarafantsika.webp" alt="Land cover maps of Ankarafantsika National Park in 2018 and 2023" loading="lazy"><span class="proj__no">03</span></div>
+<div class="proj__media"><img src="../assets/images/thumb-water-stress.webp" alt="Maps of rice-growing areas, population density and water stress index by region in Madagascar" loading="lazy"><span class="proj__no">03</span></div>
+<div class="proj__body">
+<p class="proj__meta"><span>Nov 2025</span><span class="coords">18.77° S · 46.87° E</span><span>Madagascar</span></p>
+<h2><a href="water-stress-madagascar/">Spatial Analysis of Water Stress in Madagascar Using GIS</a></h2>
+<p>Built a regional water stress index for 2018 in QGIS by comparing net renewable water (precipitation minus evapotranspiration) with rice irrigation and domestic demand, and mapped it against population density and rice-growing areas. Alaotra Mangoro, Boeny and the semi-arid south (Androy, Anosy) emerge as hotspots.</p>
+<ul class="tags"><li>QGIS</li><li>SAGA GIS</li><li>Zonal Statistics</li><li>Water Resources</li><li>WorldPop</li><li>WaPOR</li></ul>
+<span class="proj__cta">Read the case study <span aria-hidden="true">→</span></span>
+</div>
+</article>
+
+<article class="proj">
+<div class="proj__media"><img src="../assets/images/thumb-ankarafantsika.webp" alt="Land cover maps of Ankarafantsika National Park in 2018 and 2023" loading="lazy"><span class="proj__no">04</span></div>
 <div class="proj__body">
 <p class="proj__meta"><span>2024 – 2025</span><span class="coords">16.32° S · 46.80° E</span><span>Madagascar</span></p>
 <h2><a href="ecosystem-accounting-ankarafantsika/">Ecosystem Natural Capital Accounting in Ankarafantsika National Park (2018–2023)</a></h2>
